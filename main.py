@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 import os
@@ -8,7 +8,6 @@ load_dotenv()
 from pymongo.mongo_client import MongoClient
 
 client = MongoClient(os.getenv("uri"))
-
 
 try:
     client.admin.command('ping')
@@ -32,18 +31,33 @@ def submit():
     gender = request.form.get("gender")
     
     document = {
-        "Name" : name,
-        "Email" : email,
-        "Gender" : gender
+        "Name": name,
+        "Email": email,
+        "Gender": gender
     }
+
     try:
         mongo.db.yummy.insert_one(document)
-        return redirect(url_for("suxes"))
+        return redirect(url_for("success"))   # fixed naming
     except Exception as e:
         return f"Another Failure : {str(e)}"
+
+
 @app.route("/success")
-def suxes():
+def success():   # fixed function name
     return "Data submitted successfully"
 
-if __name__=="__main__":
+
+# 🔥 NEW /api ROUTE (Task 2)
+@app.route("/api")
+def api():
+    return jsonify({
+        "name": "Rishabh Jain",
+        "project": "Flask MongoDB",
+        "status": "updated in JainRishab_new branch",
+        "task": "Task 2 completed"
+    })
+
+
+if __name__ == "__main__":
     app.run(debug=True)
