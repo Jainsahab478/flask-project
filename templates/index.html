@@ -5,25 +5,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap">
 </head>
 <body>
+
     <form action="/Submit" method="post">
         <div>
             <label for="name">Enter Name : </label>
             <input type="text" id="name" name="name" placeholder="Enter Name">
         </div>
+
         <div>
             <label for="email">Enter Email : </label>
             <input type="text" id="email" name="email" placeholder="Enter Email">
         </div>
+
         <div>
             <label for="male">Male </label>
             <input type="radio" name="gender" id="male" value="Male"><br>
+
             <label for="female">Female </label>
             <input type="radio" name="gender" id="female" value="Female"><br>
         </div>
+
         <div>
-            <button type="submit">Submit
+            <button type="submit">
+                Submit
             </button>
         </div>
+    </form>
+
+    <hr>
+
+    <h1>To-Do Page</h1>
+
+    <form action="/submittodoitem" method="POST">
+
+        <div>
+            <label for="itemName">Item Name :</label>
+            <input type="text" id="itemName" name="itemName" placeholder="Enter Item Name">
+        </div>
+
+        <div>
+            <label for="itemDescription">Item Description :</label>
+            <textarea id="itemDescription" name="itemDescription" placeholder="Enter Item Description"></textarea>
+        </div>
+
+        <div>
+            <button type="submit">
+                Submit Todo
+            </button>
+        </div>
+
     </form>
 
 </body>
