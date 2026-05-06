@@ -45,5 +45,24 @@ def submit():
 def suxes():
     return "Data submitted successfully"
 
+
+@app.route("/submittodoitem", methods=['POST'])
+def submit_todo_item():
+
+    item_name = request.form.get("itemName")
+    item_description = request.form.get("itemDescription")
+
+    todo_document = {
+        "ItemName": item_name,
+        "ItemDescription": item_description
+    }
+
+    try:
+        mongo.db.todoitems.insert_one(todo_document)
+        return "Todo Item Submitted Successfully"
+
+    except Exception as e:
+        return f"Error : {str(e)}"
+
 if __name__=="__main__":
     app.run(debug=True)
